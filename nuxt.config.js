@@ -19,6 +19,11 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+  modules: [
+    '@nuxtjs/axios'
+  ],
+  axios: {
+  },
   /*
   ** Global CSS
   */
