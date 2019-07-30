@@ -40,11 +40,6 @@ export default {
   devModules: [
   ],
   /*
-  ** Nuxt.js modules
-  */
-  modules: ['@nuxtjs/axios'],
-  axios: {},
-  /*
   ** Build configuration
   */
   build: {
