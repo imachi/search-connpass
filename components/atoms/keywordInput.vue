@@ -30,13 +30,24 @@ export default class keywordInput extends Vue {
 
 <style>
 .input-item {
-  
-
+  outline: none;
+  border: none;
+  min-width: 28em;
+  width: 45%;
+  height: 3em;
+  cursor: pointer;
 }
-.input-item .nomal {
-
+.input-item.nomal {
+  border: solid 1px #008000;
 }
-.input-item .decorate {
-
+.input-item.nomal:focus {
+  border: solid 1px #66cdaa;
+}
+.input-item.decorate {
+  border-radius: 3px;
+  border: solid 1px #f08080;
+}
+.input-item.decorate:focus {
+  border: solid 1px #fa8072;
 }
 </style>
