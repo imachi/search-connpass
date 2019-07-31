@@ -50,9 +50,38 @@ export default class conditionsForm extends Vue {
     {id: "12", month: "Dec"}
   ]
 
-  processingDate() {
+  processingDate(): string {
     const today = new Date()
-    const day = today.getDate()
+    const year = today.getFullYear()
+    const newYear = year.toString()
+    const requestYm = newYear + this.selectData
+    return requestYm
+  }
+
+  async requestData() {
+    axios
+      .get('https://connpass.com/api/v1/event/',
+        {
+          params: {
+            ym: this.processingDate(),
+            keyword_or: this.inputKeyword
+          }
+        }
+      )
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.error('error')
+      })
+  }
+
+  mounted() {
+    this.requestData()
+    
+  }
+
+  computed() {
   }
 }
 </script>
