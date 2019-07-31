@@ -9,6 +9,7 @@
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
       <p>input Data is : {{ inputKeyword }}</p>
       <p>select Data is : {{ selectData }}</p>
+      <button type="button" @click="searchEvent">search</button>
     </form>
   </div>
 </template>
@@ -36,19 +37,23 @@ export default class conditionsForm extends Vue {
   inputKeyword: string = ''
 
   selectMonth: { [k: string]: string }[] = [
-    {id: "1", month: "Jan"},
-    {id: "2", month: "Feb"},
-    {id: "3", month: "Mar"},
-    {id: "4", month: "Apr"},
-    {id: "5", month: "May"},
-    {id: "6", month: "Jun"},
-    {id: "7", month: "Jul"},
-    {id: "8", month: "Aug"},
-    {id: "9", month: "Sep"},
+    {id: "01", month: "Jan"},
+    {id: "02", month: "Feb"},
+    {id: "03", month: "Mar"},
+    {id: "04", month: "Apr"},
+    {id: "05", month: "May"},
+    {id: "06", month: "Jun"},
+    {id: "07", month: "Jul"},
+    {id: "08", month: "Aug"},
+    {id: "09", month: "Sep"},
     {id: "10", month: "Oct"},
     {id: "11", month: "Nov"},
     {id: "12", month: "Dec"}
   ]
+
+  searchEvent() {
+    this.requestData()
+  }
 
   processingDate(): string {
     const today = new Date()
@@ -60,7 +65,7 @@ export default class conditionsForm extends Vue {
 
   async requestData() {
     axios
-      .get('http://localhost:3000/targetapi/api/v1/event/',
+      .get('/api',
         {
           params: {
             ym: this.processingDate(),
@@ -74,9 +79,6 @@ export default class conditionsForm extends Vue {
       .catch(err => {
         console.error('error')
       })
-  }
-
-  computed() {
   }
 }
 </script>
