@@ -23,6 +23,10 @@ export default {
     '@nuxtjs/axios'
   ],
   axios: {
+    proxy: true
+  },
+  proxy: {
+    '/targetapi/': {target: 'connpass.com', pathRewrite: {'^/api/': ''}}
   },
   /*
   ** Global CSS

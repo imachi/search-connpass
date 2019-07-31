@@ -60,7 +60,7 @@ export default class conditionsForm extends Vue {
 
   async requestData() {
     axios
-      .get('https://connpass.com/api/v1/event/',
+      .get('http://localhost:3000/targetapi/api/v1/event/',
         {
           params: {
             ym: this.processingDate(),
@@ -74,11 +74,6 @@ export default class conditionsForm extends Vue {
       .catch(err => {
         console.error('error')
       })
-  }
-
-  mounted() {
-    this.requestData()
-    
   }
 
   computed() {
