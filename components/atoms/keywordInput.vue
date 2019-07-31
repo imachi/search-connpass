@@ -4,7 +4,7 @@
     :type="type"
     :placeholder="placeholder"
     :class="nomal"
-    :value="value"
+    :value="inputValue"
     @input="changeInput"
   />
 </template>
@@ -20,7 +20,7 @@ export default class keywordInput extends Vue {
   @Prop() type!: string
   @Prop() nomal!: string
 
-  value: string = ''
+  inputValue: string = ''
 
   changeInput(e) {
     this.$emit('input', e.target.value)
@@ -32,20 +32,21 @@ export default class keywordInput extends Vue {
 .input-item {
   outline: none;
   border: none;
-  min-width: 28em;
+  min-width: 29em;
   width: 45%;
   height: 3em;
   cursor: pointer;
+  padding: 5px;
 }
 .input-item.nomal {
-  border: solid 1px #008000;
+  border: solid 1px #cccccc;
 }
 .input-item.nomal:focus {
   border: solid 1px #66cdaa;
 }
 .input-item.decorate {
   border-radius: 3px;
-  border: solid 1px #f08080;
+  border: solid 1px #cccccc;
 }
 .input-item.decorate:focus {
   border: solid 1px #fa8072;

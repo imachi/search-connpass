@@ -20,9 +20,19 @@ export default {
   */
   loading: { color: '#fff' },
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
   axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api': {
+      target: 'https://connpass.com/api/v1/event/',
+      pathRewrite: {
+        '^/api' : '/'
+        }
+      }
   },
   /*
   ** Global CSS
