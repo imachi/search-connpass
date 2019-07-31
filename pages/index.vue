@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="index-temp">
     <h1>Search Event</h1>
     <conditionsForm />
   </div>
@@ -19,4 +19,15 @@ export default class IndexPage extends Vue {
 }
 </script>
 
-<style></style>
+<style>
+.index-temp {
+  width: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.index-temp > h1 {
+  margin-bottom: 30px;
+}
+</style>
