@@ -20,7 +20,7 @@
         <option>11</option>
         <option>12</option>
       </select>
-      <keywordInput v-model="keywords" placeholder="イベントのタイトルや住所などを入力してください（複数可）" class="event-keyword">
+      <keywordInput v-model="keywords" placeholder="イベントのタイトルや住所などを入力してください（複数可）" class="event-keyword" />
     </form>
   </div>
 </template>
