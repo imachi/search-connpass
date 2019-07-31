@@ -5,9 +5,10 @@
   入力フォーム -->
   <div class="serch-form">
     <form action="#">
-      <selectBox :selectBoxItem="selectMonth" :defaultValue="textVal" :class="nomal" />
+      <selectBox v-model="selectData" :selectBoxItem="selectMonth" :defaultValue="textVal" :class="nomal" />
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
       <p>input Data is : {{ inputKeyword }}</p>
+      <p>select Data is : {{ selectData }}</p>
     </form>
   </div>
 </template>
@@ -31,6 +32,7 @@ export default class conditionsForm extends Vue {
   type: string = 'text'
   nomal: string = 'nomal'
   decorate: string = 'decorate'
+  selectData: string = ''
   inputKeyword: string = ''
 
   selectMonth: { [k: string]: string }[] = [

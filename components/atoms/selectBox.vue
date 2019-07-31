@@ -1,9 +1,9 @@
 <template>
-  <select class="select-month">
+  <select class="select-month" @change="selectChangeVal">
     <option disabled>{{ defaultValue }}</option>
     <option
       v-for="selectItem in selectBoxItem" 
-      :key="selectItem.id"
+      :key="selectItem.index"
       :value="selectItem.id"
     >
     {{ selectItem.month }}
@@ -13,12 +13,17 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { constants } from 'crypto';
 
 @Component({})
 
 export default class selectBox extends Vue {
   @Prop() defaultValue!: string
   @Prop() selectBoxItem!: { [k: string]: string }[]
+
+  selectChangeVal(e) {
+    this.$emit('input', e.target.value)
+  }
 }
 </script>
 
