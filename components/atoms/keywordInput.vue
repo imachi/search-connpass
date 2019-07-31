@@ -32,7 +32,7 @@ export default class keywordInput extends Vue {
 .input-item {
   outline: none;
   border: none;
-  min-width: 28em;
+  min-width: 29em;
   width: 45%;
   height: 3em;
   cursor: pointer;
