@@ -1,20 +1,27 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    "moduleResolution": "node",
+    "lib": [
+      "esnext",
+      "esnext.asynciterable",
+      "dom"
+    ],
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
     "sourceMap": true,
+    "strict": false,
     "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
     "noEmit": true,
     "baseUrl": ".",
     "resolveJsonModule": true,
-    "noImplicitAny": false,
     "paths": {
       "~/*": [
         "./*"
       ]
-    }
+    },
   }
 }

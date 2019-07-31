@@ -5,7 +5,7 @@
     :placeholder="placeholder"
     :class="nomal"
     :value="value"
-    @input="this.$emit('input', value)"
+    @input="changeInput"
   />
 </template>
 
@@ -21,6 +21,10 @@ export default class keywordInput extends Vue {
   @Prop() nomal!: string
 
   value: string = ''
+
+  changeInput(e) {
+    this.$emit('input', e.target.value)
+  }
 }
 </script>
 
