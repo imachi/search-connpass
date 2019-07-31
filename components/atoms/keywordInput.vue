@@ -1,9 +1,11 @@
 <template>
   <input
+    class="input-item"
     :type="type"
     :placeholder="placeholder"
+    :class="nomal"
     :value="value"
-    @input="valueChange"
+    @input="this.$emit('input', value)"
   />
 </template>
 
@@ -14,16 +16,23 @@ import { placeholder } from '@babel/types';
 @Component({})
 
 export default class keywordInput extends Vue {
-@Prop() type!: string
-@Prop() placeholder!: string
+  @Prop() placeholder!: string
+  @Prop() type!: string
+  @Prop() nomal!: string
 
-valueChange(e: any) {
-  this.$emit('input', e.target.value)
-}
-
+  value: string = ''
 }
 </script>
 
 <style>
+.input-item {
+  
 
+}
+.input-item .nomal {
+
+}
+.input-item .decorate {
+
+}
 </style>

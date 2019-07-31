@@ -20,14 +20,15 @@
         <option>11</option>
         <option>12</option>
       </select>
-      <keywordInput v-model="keywords" placeholder="イベントのタイトルや住所などを入力してください（複数可）" class="event-keyword" />
+      <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
+      <p>input Data is : {{ inputKeyword }}</p>
     </form>
   </div>
 </template>
 
 <script lang="ts">
 import axios from 'axios'
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import keywordInput from '~/components/atoms/keywordInput.vue'
 
 @Component({
@@ -37,7 +38,11 @@ import keywordInput from '~/components/atoms/keywordInput.vue'
 })
 
 export default class conditionsForm extends Vue {
-  keywords: string = ''
+  placeholder: string = 'イベントのタイトルや住所などを入力してください（複数可)'
+  type: string = 'text'
+  nomal: string = 'nomal'
+  decorate: string = 'decorate'
+  inputKeyword: string = ''
 
   processingDate() {
     const today = new Date()
