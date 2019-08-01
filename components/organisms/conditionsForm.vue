@@ -1,15 +1,9 @@
 <template>
-  <!-- イベント開催月
-  管理者のニックネーム
-  keyword（複数可）
-  入力フォーム -->
   <div class="serch-form">
     <form action="#">
       <selectBox v-model="selectData" :selectBoxItem="selectMonth" :defaultValue="textVal" :class="nomal" />
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
-      <p>input Data is : {{ inputKeyword }}</p>
-      <p>select Data is : {{ selectData }}</p>
-      <button type="button" @click="searchEvent">search</button>
+      <utilButton :type="button" :class="nomal" @click="searchEvent" />
     </form>
   </div>
 </template>
@@ -19,11 +13,13 @@ import axios from 'axios'
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import keywordInput from '~/components/atoms/keywordInput.vue'
 import selectBox from '~/components/atoms/selectBox.vue'
+import utilButton from '~/components/atoms/utilButton.vue'
 
 @Component({
   components: {
     keywordInput,
-    selectBox
+    selectBox,
+    utilButton
   }
 })
 
@@ -35,6 +31,7 @@ export default class conditionsForm extends Vue {
   decorate: string = 'decorate'
   selectData: string = ''
   inputKeyword: string = ''
+  button: string = 'button'
 
   selectMonth: { [k: string]: string }[] = [
     {id: "01", month: "Jan"},
@@ -74,7 +71,12 @@ export default class conditionsForm extends Vue {
         }
       )
       .then(res => {
-        console.log(res)
+        if(res.data.results_returned == 0) {
+          //検索結果0件の場合
+          alert('ないよ')
+        }else {
+          this.$emit(res.data)
+        }
       })
       .catch(err => {
         console.error('error')
