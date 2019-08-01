@@ -23,6 +23,9 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/proxy'
   ],
+  devModules: [
+    '@nuxtjs/tailwindcss'
+  ],
   axios: {
     proxy: true
   },
@@ -43,11 +46,6 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-  ],
-  /*
-  ** Nuxt.js dev-modules
-  */
-  devModules: [
   ],
   /*
   ** Build configuration
