@@ -1,17 +1,23 @@
 <template>
-  <div class="index-temp">
-    <h1>Search Event</h1>
-    <conditionsForm />
+  <div>
+    <img src="~/assets/img/connpass_logo_2.png" width="150px" height="40px">
+    <div class="index-temp">
+      <h1>Search Event</h1>
+      <conditionsForm />
+      <resultsData />
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import conditionsForm from '~/components/organisms/conditionsForm.vue'
+import resultsData from '~/components/organisms/resultsData.vue'
 
 @Component ({
   components: {
-    conditionsForm
+    conditionsForm,
+    resultsData
   }
 })
 export default class IndexPage extends Vue {
@@ -29,5 +35,7 @@ export default class IndexPage extends Vue {
 }
 .index-temp > h1 {
   margin-bottom: 30px;
+  font-size: 25px;
+  letter-spacing: 1px;
 }
 </style>
