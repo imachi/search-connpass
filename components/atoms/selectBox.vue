@@ -27,7 +27,7 @@ export default class selectBox extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 .select-month {
   border: none;
   outline: none;
@@ -36,6 +36,7 @@ export default class selectBox extends Vue {
   min-width: 5em;
   width: 30%;
   height: 3em;
+  background-color: #ffffff;
 }
 .select-month.nomal {
   border: solid 1px #cccccc;

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <img src="~/assets/img/connpass_logo_2.png" width="150px" height="40px">
+    <div class="event-img">
+      <img src="~/assets/img/connpass_logo_2.png">
+    </div>
     <div class="index-temp">
       <h1>Search Event</h1>
       <conditionsForm />
@@ -25,7 +27,7 @@ export default class IndexPage extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 .index-temp {
   width: 80%;
   position: fixed;
@@ -34,8 +36,14 @@ export default class IndexPage extends Vue {
   transform: translate(-50%, -50%);
 }
 .index-temp > h1 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 25px;
   letter-spacing: 1px;
+}
+.event-img {
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  margin: 10px;
 }
 </style>

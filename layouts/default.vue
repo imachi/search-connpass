@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -25,7 +25,7 @@ html {
 }
 .default-page {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #fffff4;
 }
 </style>

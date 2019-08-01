@@ -10,4 +10,4 @@ export default class resultsData extends Vue{
   
 }
 </script>
-<style></style>
+<style scoped></style>
