@@ -1,16 +1,28 @@
 <template>
-  <!-- イベント開催月
-  管理者のニックネーム
-  keyword（複数可）
-  入力フォーム -->
   <div class="serch-form">
     <form action="#">
       <selectBox v-model="selectData" :selectBoxItem="selectMonth" :defaultValue="textVal" :class="nomal" />
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
-      <p>input Data is : {{ inputKeyword }}</p>
-      <p>select Data is : {{ selectData }}</p>
-      <button type="button" @click="searchEvent">search</button>
+      <button type="button" class="button" @click="searchEvent">search</button>
     </form>
+    <div class="event-table">
+      <table>
+        <tr 
+          v-for="event in fetchEventData" 
+          :key="event.index"
+          >
+          <td>{{ event.started_at }}</td>
+          <td>
+            <a :href="event.event_url" target="__blank">
+              {{ event.title }}
+            </a>
+          </td>
+          <td>{{ event.catch }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.limit }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -35,6 +47,8 @@ export default class conditionsForm extends Vue {
   decorate: string = 'decorate'
   selectData: string = ''
   inputKeyword: string = ''
+  button: string = 'button'
+  fetchEventData: { [k: string]: string }[] = []
 
   selectMonth: { [k: string]: string }[] = [
     {id: "01", month: "Jan"},
@@ -51,7 +65,7 @@ export default class conditionsForm extends Vue {
     {id: "12", month: "Dec"}
   ]
 
-  searchEvent() {
+  searchEvent(): void {
     this.requestData()
   }
 
@@ -63,7 +77,7 @@ export default class conditionsForm extends Vue {
     return requestYm
   }
 
-  async requestData() {
+  async requestData(): Promise<any> {
     axios
       .get('/api',
         {
@@ -74,7 +88,13 @@ export default class conditionsForm extends Vue {
         }
       )
       .then(res => {
-        console.log(res)
+        console.log(res.data)
+        if(res.data.results_returned == 0) {
+          //検索結果0件の場合
+          alert('ないよ')
+        }else {
+          this.fetchEventData = res.data.events
+        }
       })
       .catch(err => {
         console.error('error')
@@ -83,4 +103,42 @@ export default class conditionsForm extends Vue {
 }
 </script>
 
-<style></style>
+<style scoped>
+.button {
+  display: inline-block;
+  min-width: 7em;
+  width: 70px;
+  padding: 0.45em;
+  text-decoration: none;
+  color: #FFF;
+  background: #d22c00;
+  border-bottom: solid 2px #b02500;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-top: 20px;
+}
+form {
+  margin-bottom: 20px;
+}
+.event-table {
+  width: 100%;
+  height: 300px;
+  overflow-y: auto;
+}
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+table tr{
+  border-bottom: solid 1px #eee;
+  cursor: pointer;
+}
+table th,table td{
+  text-align: center;
+  width: 25%;
+  padding: 15px 0;
+}
+</style>
