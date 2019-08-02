@@ -34,6 +34,7 @@ export default class IndexPage extends Vue {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-top: 80px;
 }
 .index-temp > h1 {
   margin-bottom: 20px;
@@ -44,6 +45,6 @@ export default class IndexPage extends Vue {
   display: inline-block;
   width: 200px;
   height: 40px;
-  margin: 10px;
+  margin: 20px 30px;
 }
 </style>

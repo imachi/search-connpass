@@ -5,7 +5,7 @@
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
       <button type="button" class="button" @click="searchEvent">search</button>
     </form>
-    <div class="event-table" v-if="isAble">
+    <div class="event-table" :class="{'is-open': isAble}">
       <table>
         <tr 
           v-for="event in fetchEventData" 
@@ -19,7 +19,6 @@
           <td>{{ event.started_at }}</td>
           <td>{{ event.catch }}</td>
           <td>{{ event.address }}</td>
-          <td>{{ event.limit }}</td>
         </tr>
       </table>
     </div>
@@ -127,6 +126,8 @@ export default class conditionsForm extends Vue {
   font-weight: bold;
   letter-spacing: 2px;
   margin-top: 20px;
+  appearance: none;
+  outline: none;
 }
 form {
   margin-bottom: 30px;
@@ -136,6 +137,10 @@ form {
   height: 400px;
   overflow-y: auto;
   background-color: #ffffff;
+  visibility: hidden;
+}
+.event-table.is-open {
+  visibility: visible;
 }
 .event-table table{
   border-collapse: collapse;
@@ -143,12 +148,19 @@ form {
 }
 .event-table table tr{
   border-bottom: solid 1px #eeeeee;
-  cursor: pointer;
 }
 .event-table table th,table td{
-  width: 25%;
   text-align: center;
   padding: 15px 10px;
+}
+.event-table table th {
+  width: 20%;
+  font-size: 14px;
+  cursor: pointer;
+}
+.event-table table td {
+  width: 25%;
+  font-size: 12px;
 }
 .event-table table th:hover {
   border-bottom: solid 1px #d22c00;
