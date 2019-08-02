@@ -18,7 +18,7 @@
             </a>
           </td>
           <td>{{ event.catch }}</td>
-          <td>{{ event.description }}</td>
+          <td>{{ event.address }}</td>
           <td>{{ event.limit }}</td>
         </tr>
       </table>
@@ -77,6 +77,11 @@ export default class conditionsForm extends Vue {
     return requestYm
   }
 
+  formatData(data): string {
+    const format = new Date(data);
+    return format.toDateString()
+  }
+
   async requestData(): Promise<any> {
     axios
       .get('/api',
@@ -88,11 +93,13 @@ export default class conditionsForm extends Vue {
         }
       )
       .then(res => {
-        console.log(res.data)
         if(res.data.results_returned == 0) {
           //検索結果0件の場合
           alert('ないよ')
         }else {
+          res.data.events.forEach(current => {
+            current.started_at = this.formatData(current.started_at)
+          })
           this.fetchEventData = res.data.events
         }
       })
