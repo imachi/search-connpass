@@ -5,21 +5,20 @@
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
       <button type="button" class="button" @click="searchEvent">search</button>
     </form>
-    <div class="event-table">
+    <div class="event-table" :class="{'is-open': isAble}">
       <table>
         <tr 
           v-for="event in fetchEventData" 
           :key="event.index"
           >
-          <td>{{ event.started_at }}</td>
-          <td>
+          <th>
             <a :href="event.event_url" target="__blank">
               {{ event.title }}
             </a>
-          </td>
+          </th>
+          <td>{{ event.started_at }}</td>
           <td>{{ event.catch }}</td>
-          <td>{{ event.description }}</td>
-          <td>{{ event.limit }}</td>
+          <td>{{ event.address }}</td>
         </tr>
       </table>
     </div>
@@ -49,6 +48,7 @@ export default class conditionsForm extends Vue {
   inputKeyword: string = ''
   button: string = 'button'
   fetchEventData: { [k: string]: string }[] = []
+  isAble: boolean = false
 
   selectMonth: { [k: string]: string }[] = [
     {id: "01", month: "Jan"},
@@ -67,6 +67,7 @@ export default class conditionsForm extends Vue {
 
   searchEvent(): void {
     this.requestData()
+    this.isAble = !this.isAble
   }
 
   processingDate(): string {
@@ -75,6 +76,11 @@ export default class conditionsForm extends Vue {
     const newYear = year.toString()
     const requestYm = newYear + this.selectData
     return requestYm
+  }
+
+  formatData(data): string {
+    const format = new Date(data);
+    return format.toDateString()
   }
 
   async requestData(): Promise<any> {
@@ -88,11 +94,13 @@ export default class conditionsForm extends Vue {
         }
       )
       .then(res => {
-        console.log(res.data)
         if(res.data.results_returned == 0) {
           //検索結果0件の場合
           alert('ないよ')
         }else {
+          res.data.events.forEach(current => {
+            current.started_at = this.formatData(current.started_at)
+          })
           this.fetchEventData = res.data.events
         }
       })
@@ -105,7 +113,7 @@ export default class conditionsForm extends Vue {
 
 <style scoped>
 .button {
-  display: inline-block;
+  display: block;
   min-width: 7em;
   width: 70px;
   padding: 0.45em;
@@ -118,27 +126,43 @@ export default class conditionsForm extends Vue {
   font-weight: bold;
   letter-spacing: 2px;
   margin-top: 20px;
+  appearance: none;
+  outline: none;
 }
 form {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .event-table {
   width: 100%;
-  height: 300px;
+  height: 400px;
   overflow-y: auto;
+  background-color: #ffffff;
+  visibility: hidden;
 }
-table{
+.event-table.is-open {
+  visibility: visible;
+}
+.event-table table{
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%;
 }
-table tr{
-  border-bottom: solid 1px #eee;
+.event-table table tr{
+  border-bottom: solid 1px #eeeeee;
+}
+.event-table table th,table td{
+  text-align: center;
+  padding: 15px 10px;
+}
+.event-table table th {
+  width: 20%;
+  font-size: 14px;
   cursor: pointer;
 }
-table th,table td{
-  text-align: center;
+.event-table table td {
   width: 25%;
-  padding: 15px 0;
+  font-size: 12px;
+}
+.event-table table th:hover {
+  border-bottom: solid 1px #d22c00;
 }
 </style>
