@@ -30,11 +30,8 @@ export default class IndexPage extends Vue {
 <style scoped>
 .index-temp {
   width: 80%;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 80px;
+  margin: auto;
+  padding-bottom: 50px;
 }
 .index-temp > h1 {
   margin-bottom: 20px;

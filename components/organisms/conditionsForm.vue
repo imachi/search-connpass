@@ -22,6 +22,7 @@
         </tr>
       </table>
     </div>
+    <div v-if="!isAble" class="not-found-message">イベントがありません</div>
   </div>
 </template>
 
@@ -96,7 +97,7 @@ export default class conditionsForm extends Vue {
       .then(res => {
         if(res.data.results_returned == 0) {
           //検索結果0件の場合
-          alert('ないよ')
+          this.isAble = false
         }else {
           res.data.events.forEach(current => {
             current.started_at = this.formatData(current.started_at)
@@ -133,14 +134,14 @@ form {
   margin-bottom: 30px;
 }
 .event-table {
+  display: none;
   width: 100%;
   height: 400px;
   overflow-y: auto;
   background-color: #ffffff;
-  visibility: hidden;
 }
 .event-table.is-open {
-  visibility: visible;
+  display: block;
 }
 .event-table table{
   border-collapse: collapse;
@@ -151,7 +152,7 @@ form {
 }
 .event-table table th,table td{
   text-align: center;
-  padding: 15px 10px;
+  padding: 20px 5px;
 }
 .event-table table th {
   width: 20%;
@@ -164,5 +165,13 @@ form {
 }
 .event-table table th:hover {
   border-bottom: solid 1px #d22c00;
+}
+.not-found-message {
+  width: 14em;
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+  border-bottom: solid 1px #d22c00;
+  letter-spacing: 2px;
 }
 </style>
