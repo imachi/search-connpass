@@ -3,7 +3,7 @@
     <form action="#">
       <selectBox v-model="selectData" :selectBoxItem="selectMonth" :defaultValue="textVal" :class="nomal" />
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
-      <button type="button" class="button" @click="searchEvent">search</button>
+      <button type="button" class="button" @click="requestData">search</button>
     </form>
     <div class="event-table" :class="{'is-open': isAble}">
       <table>
@@ -49,7 +49,7 @@ export default class conditionsForm extends Vue {
   inputKeyword: string = ''
   button: string = 'button'
   fetchEventData: { [k: string]: string }[] = []
-  isAble: boolean = false
+  isAble: boolean = true
 
   selectMonth: { [k: string]: string }[] = [
     {id: "01", month: "Jan"},
@@ -65,11 +65,6 @@ export default class conditionsForm extends Vue {
     {id: "11", month: "Nov"},
     {id: "12", month: "Dec"}
   ]
-
-  searchEvent(): void {
-    this.requestData()
-    this.isAble = !this.isAble
-  }
 
   processingDate(): string {
     const today = new Date()
@@ -99,6 +94,7 @@ export default class conditionsForm extends Vue {
           //検索結果0件の場合
           this.isAble = false
         }else {
+          this.isAble = true
           res.data.events.forEach(current => {
             current.started_at = this.formatData(current.started_at)
           })
@@ -133,12 +129,14 @@ export default class conditionsForm extends Vue {
 form {
   margin-bottom: 30px;
 }
+table {
+  background-color: #ffffff;
+}
 .event-table {
   display: none;
   width: 100%;
   height: 400px;
   overflow-y: auto;
-  background-color: #ffffff;
 }
 .event-table.is-open {
   display: block;
