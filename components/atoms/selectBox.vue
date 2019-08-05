@@ -6,7 +6,7 @@
       :key="selectItem.index"
       :value="selectItem.id"
     >
-    {{ selectItem.month }}
+    {{ selectItem.val }}
     </option>
   </select>
 </template>

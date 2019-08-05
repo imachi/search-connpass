@@ -1,7 +1,8 @@
 <template>
   <div class="serch-form">
     <form action="#">
-      <selectBox v-model="selectData" :selectBoxItem="selectMonth" :defaultValue="textVal" :class="nomal" />
+      <selectBox v-model="selectData" :selectBoxItem="selectMonth" :defaultValue="month" :class="nomal" />
+      <selectBox v-modal="selectPlace" :selectBoxItem="selectPrefectures" :defaultValue="place" :class="nomal" />
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
       <button type="button" class="button" @click="requestData">search</button>
     </form>
@@ -40,11 +41,13 @@ import selectBox from '~/components/atoms/selectBox.vue'
 })
 
 export default class conditionsForm extends Vue {
-  textVal: string = 'イベント開催月を選択してください'
+  place: string = '都道府県を選択してください'
+  month: string = 'イベント開催月を選択してください'
   placeholder: string = 'イベントのタイトルや住所などを入力してください（複数可)'
   type: string = 'text'
   nomal: string = 'nomal'
   decorate: string = 'decorate'
+  selectPlace: string = ''
   selectData: string = ''
   inputKeyword: string = ''
   button: string = 'button'
@@ -52,18 +55,68 @@ export default class conditionsForm extends Vue {
   isAble: boolean = true
 
   selectMonth: { [k: string]: string }[] = [
-    {id: "01", month: "Jan"},
-    {id: "02", month: "Feb"},
-    {id: "03", month: "Mar"},
-    {id: "04", month: "Apr"},
-    {id: "05", month: "May"},
-    {id: "06", month: "Jun"},
-    {id: "07", month: "Jul"},
-    {id: "08", month: "Aug"},
-    {id: "09", month: "Sep"},
-    {id: "10", month: "Oct"},
-    {id: "11", month: "Nov"},
-    {id: "12", month: "Dec"}
+    {id: "01", val: "Jan"},
+    {id: "02", val: "Feb"},
+    {id: "03", val: "Mar"},
+    {id: "04", val: "Apr"},
+    {id: "05", val: "May"},
+    {id: "06", val: "Jun"},
+    {id: "07", val: "Jul"},
+    {id: "08", val: "Aug"},
+    {id: "09", val: "Sep"},
+    {id: "10", val: "Oct"},
+    {id: "11", val: "Nov"},
+    {id: "12", val: "Dec"}
+  ]
+
+  selectPrefectures:{ [k: string]: string }[] = [
+    {id: "1", val: "東京都"},
+    {id: "2", val: "大阪府"},
+    {id: "3", val: "福岡県"},
+    {id: "4", val: "愛知県"},
+    {id: "5", val: "北海道"},
+    {id: "6", val: "神奈川県"},
+    {id: "7", val: "千葉県"},
+    {id: "8", val: "埼玉県"},
+    {id: "9", val: "山梨県"},
+    {id: "10", val: "栃木県"},
+    {id: "11", val: "茨城県"},
+    {id: "12", val: "群馬県"},
+    {id: "13", val: "福島県"},
+    {id: "14", val: "山形県"},
+    {id: "15", val: "宮城県"},
+    {id: "16", val: "岩手県"},
+    {id: "17", val: "秋田県"},
+    {id: "18", val: "青森県"},
+    {id: "19", val: "新潟県"},
+    {id: "20", val: "長野県"},
+    {id: "21", val: "富山県"},
+    {id: "22", val: "静岡県"},
+    {id: "23", val: "岐阜県"},
+    {id: "24", val: "石川県"},
+    {id: "25", val: "福井県"},
+    {id: "26", val: "滋賀県"},
+    {id: "27", val: "三重県"},
+    {id: "28", val: "京都府"},
+    // {id: "29", val: "奈良県"},
+    {id: "30", val: "和歌山県"},
+    {id: "31", val: "兵庫県"},
+    {id: "32", val: "鳥取県"},
+    {id: "33", val: "岡山県"},
+    {id: "34", val: "島根県"},
+    {id: "35", val: "広島県"},
+    {id: "36", val: "山口県"},
+    {id: "37", val: "香川県"},
+    {id: "38", val: "徳島県"},
+    {id: "39", val: "高知県"},
+    {id: "40", val: "愛媛県"},
+    {id: "41", val: "大分県"},
+    {id: "42", val: "佐賀県"},
+    {id: "43", val: "長崎県"},
+    {id: "44", val: "熊本県"},
+    {id: "45", val: "鹿児島県"},
+    {id: "46", val: "宮崎県"},
+    {id: "47", val: "沖縄県"},
   ]
 
   processingDate(): string {
@@ -84,6 +137,7 @@ export default class conditionsForm extends Vue {
       .get('/api',
         {
           params: {
+            keyword: this.selectPlace,
             ym: this.processingDate(),
             keyword_or: this.inputKeyword
           }
