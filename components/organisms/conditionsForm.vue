@@ -2,7 +2,7 @@
   <div class="serch-form">
     <form action="#">
       <selectBox v-model="selectData" :selectBoxItem="selectMonth" :defaultValue="month" :class="nomal" />
-      <selectBox v-modal="selectPlace" :selectBoxItem="selectPrefectures" :defaultValue="place" :class="nomal" />
+      <selectBox v-model="selectPlace" :selectBoxItem="selectPrefectures" :defaultValue="place" :class="nomal" />
       <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
       <button type="button" class="button" @click="requestData">search</button>
     </form>
@@ -47,8 +47,8 @@ export default class conditionsForm extends Vue {
   type: string = 'text'
   nomal: string = 'nomal'
   decorate: string = 'decorate'
-  selectPlace: string = ''
   selectData: string = ''
+  selectPlace: string = ''
   inputKeyword: string = ''
   button: string = 'button'
   fetchEventData: { [k: string]: string }[] = []
