@@ -1,6 +1,6 @@
 <template>
-  <select class="select-month" @change="selectChangeVal">
-    <option disabled>{{ defaultValue }}</option>
+  <select class="select-data" @change="selectChangeVal">
+    <option>{{ defaultValue }}</option>
     <option
       v-for="selectItem in selectBoxItem" 
       :key="selectItem.index"
@@ -28,7 +28,7 @@ export default class selectBox extends Vue {
 </script>
 
 <style scoped>
-.select-month {
+.select-data {
   border: 0;
   outline: none;
   border-radius: 0;
@@ -36,20 +36,21 @@ export default class selectBox extends Vue {
   background: none;
   min-width: 5em;
   width: 30%;
-  height: 3em;
+  height: 4em;
   background-color: #ffffff;
+  font-size: 11px;
 }
-.select-month.nomal {
+.select-data.nomal {
   outline: 1px solid #cccccc;
 }
-.select-month.nomal:focus {
+.select-data.nomal:focus {
   border: solid 1px #66cdaa;
 }
-.select-month.decorate {
+.select-data.decorate {
   border-radius: 3px;
   border: solid 1px #cccccc;
 }
-.select-month.decorate:focus {
+.select-data.decorate:focus {
   border: solid 1px #fa8072;
 }
 </style>

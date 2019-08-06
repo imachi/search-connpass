@@ -33,10 +33,11 @@ export default class keywordInput extends Vue {
   outline: none;
   border: none;
   min-width: 29em;
-  width: 45%;
-  height: 3em;
+  width: 65%;
+  height: 4em;
   cursor: pointer;
   padding: 5px;
+  font-size: 11px
 }
 .input-item.nomal {
   border: solid 1px #cccccc;

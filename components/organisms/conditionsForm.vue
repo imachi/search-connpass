@@ -1,9 +1,26 @@
 <template>
   <div class="serch-form">
     <form action="#">
-      <selectBox v-model="selectData" :selectBoxItem="selectMonth" :defaultValue="month" :class="nomal" />
-      <selectBox v-model="selectPlace" :selectBoxItem="selectPrefectures" :defaultValue="place" :class="nomal" />
-      <keywordInput v-model="inputKeyword" :type="type" :placeholder="placeholder" :class="nomal" />
+      <div class="select-box">
+        <selectBox
+          v-model="selectData" 
+          :selectBoxItem="selectMonth"
+          :defaultValue="month"
+          :class="nomal"
+        />
+        <selectBox
+          v-model="selectPlace"
+          :selectBoxItem="selectPrefectures"
+          :defaultValue="place"
+          :class="nomal"
+        />
+      </div>
+      <keywordInput
+        v-model="inputKeyword"
+        :type="type"
+        :placeholder="placeholder"
+        :class="nomal"
+      />
       <button type="button" class="button" @click="requestData">search</button>
     </form>
     <div class="event-table" :class="{'is-open': isAble}">
@@ -225,5 +242,8 @@ table {
   margin: auto;
   border-bottom: solid 1px #d22c00;
   letter-spacing: 2px;
+}
+.select-box {
+  margin-bottom: 20px;
 }
 </style>
