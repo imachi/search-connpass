@@ -4,7 +4,7 @@
     <option
       v-for="selectItem in selectBoxItem" 
       :key="selectItem.index"
-      :value="selectItem.id"
+      :value="selectItem.val"
     >
     {{ selectItem.val }}
     </option>
