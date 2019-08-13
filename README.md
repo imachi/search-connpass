@@ -1,6 +1,8 @@
 # serch-connpass
 
-> My majestic Nuxt.js project
+connpassのイベントを検索するapp
+nuxt+vue+typescript
+
 
 ## Build Setup
 
