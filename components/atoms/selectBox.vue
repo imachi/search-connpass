@@ -30,9 +30,7 @@ export default class selectBox extends Vue {
 <style scoped>
 .select-data {
   border: 0;
-  outline: none;
   border-radius: 0;
-  outline-offset: -1px;
   background: none;
   min-width: 5em;
   width: 30%;
@@ -44,7 +42,7 @@ export default class selectBox extends Vue {
   outline: 1px solid #cccccc;
 }
 .select-data.nomal:focus {
-  border: solid 1px #66cdaa;
+  outline: solid 1px #66cdaa;
 }
 .select-data.decorate {
   border-radius: 3px;

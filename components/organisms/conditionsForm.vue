@@ -3,8 +3,8 @@
     <form action="#">
       <div class="select-box">
         <selectBox
-          v-model="selectData" 
-          :selectBoxItem="selectMonth"
+          v-model="selectMonth" 
+          :selectBoxItem="selectMonthData"
           :defaultValue="month"
           :class="nomal"
         />
@@ -64,14 +64,14 @@ export default class conditionsForm extends Vue {
   type: string = 'text'
   nomal: string = 'nomal'
   decorate: string = 'decorate'
-  selectData: string = ''
+  selectMonth: string = ''
   selectPlace: string = ''
   inputKeyword: string = ''
   button: string = 'button'
   fetchEventData: { [k: string]: string }[] = []
   isAble: boolean = true
 
-  selectMonth: { [k: string]: string }[] = [
+  selectMonthData: { [k: string]: string }[] = [
     {val: "01"},
     {val: "02"},
     {val: "03"},
@@ -140,13 +140,13 @@ export default class conditionsForm extends Vue {
     const today = new Date()
     const year = today.getFullYear()
     const newYear = year.toString()
-    const requestYm = newYear + this.selectData
+    const requestYm = newYear + this.selectMonth
     return requestYm
   }
 
   formatData(data): string {
     const format = new Date(data);
-    return format.toLocaleDateString();
+    return format.toLocaleDateString()
   }
 
   async requestData(): Promise<any> {
