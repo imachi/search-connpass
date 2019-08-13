@@ -1,6 +1,7 @@
 # serch-connpass
 
 connpassのイベントを検索するapp
+
 nuxt+vue+typescript
 
 
